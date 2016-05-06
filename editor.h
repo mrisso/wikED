@@ -11,4 +11,6 @@ void insereEditor(Editor *lista, Editor *novoEditor);
 
 void retiraEditor(Editor *lista, char* editor);
 
+Editor *freeListaEditor(Editor *lista);
+
 #endif
