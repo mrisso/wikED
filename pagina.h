@@ -9,7 +9,7 @@ Pagina *initPagina(char *nome, char *arquivo);
 
 void inserePagina(Pagina *lista, Pagina *novaPagina);
 
-void retiraPagina(Pagina *lista, Pagina *xPagina);
+int retiraPagina(Pagina *lista, char *xPagina);
 
 Pagina *freeListaPagina(Pagina *lista);
 
