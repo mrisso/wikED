@@ -1,3 +1,4 @@
+//pagina.c
 //Constantes
 #define OK											0
 #define NAO_ENCONTRADO								1
@@ -16,9 +17,10 @@ struct pagina
 	char *nome;
 	char *arquivo;
 	Pagina *prox;
-	//Adicionar lista de Contribuições
+	Colab *colabs;
 };
 
+//Funções
 Pagina *initListaPagina(void)
 {
 	return NULL;
@@ -27,10 +29,13 @@ Pagina *initListaPagina(void)
 Pagina *initPagina(char *nome, char *arquivo)
 {
 	Pagina *new = (Pagina*) malloc(sizeof(Pagina));
+	new->nome = (char*) malloc((strlen(nome)+1)*sizeof(char));
+	new->arquivo = (char*) malloc((strlen(arquivo)+1)*sizeof(char));
 
 	strcpy(new->nome,nome);
 	strcpy(new->arquivo,arquivo);
 	new->prox = NULL;
+	new->colabs = NULL;
 
 	return new;
 }
@@ -52,35 +57,48 @@ void inserePagina(Pagina *lista, Pagina *novaPagina)
 
 int retiraPagina(Pagina *lista, char *xPagina)
 {
-	Pagina *ant, *prox;
+	Pagina *ant, *aux;
 
 	ant = NULL;
-	prox = lista;
-	if(prox==NULL)
+	aux= lista;
+	if(aux==NULL)
 		return NAO_ENCONTRADO;
 
 	else
 	{
-		while(prox->prox!=NULL)
+		while(aux->prox!=NULL)
 		{
-			if(!strcmp(prox->nome,xPagina))
+			if(!strcmp(aux->nome,xPagina))
 			{
-				//Adicionar free às Contribuições
-				ant->prox=prox->prox;
-				free(prox->nome);
-				free(prox->arquivo);
-				free(prox);
+				ant->prox=aux->prox;
+				freeListaColab(aux->colabs); //Função de Free de colaboracao.h 
+				free(aux->nome);
+				free(aux->arquivo);
+				free(aux);
 				return OK;
 			}
-			ant = prox;
-			prox = prox->prox;
+			ant = aux;
+			aux = aux->prox;
 		}
 	}
 	return NAO_ENCONTRADO;
 }
 
+Pagina *freeListaPagina(Pagina *lista)
+{
+	Pagina *aux, *prox;
 
+	aux = lista;
 
+	while(aux!=NULL)
+	{
+		prox = aux->prox;
+		freeListaColab(aux->colabs); //Função de Free de colaboracao.h
+		free(aux->nome);
+		free(aux->arquivo);
+		free(aux);
+		aux = prox;
+	}
 
-
-
+	return NULL;
+}
