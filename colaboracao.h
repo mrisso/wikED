@@ -5,11 +5,11 @@ typedef struct colab Colab;
 
 Colab *initListaColab(void);
 
-Colab *initColab(char *nome, char *arquivo, char *content, char *autor);
+Colab *initColab(char *nome, char *content, char *autor);
 
 void insereColab(Colab *lista, Colab *novaColab);
 
-void retiraColab(Colab *lista, char* xColab);
+int retiraColab(Colab *lista, char* xColab);
 
 Colab *freeListaColab(Colab *lista);
 

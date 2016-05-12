@@ -1,5 +1,10 @@
 //colaboracao.c
 //Constantes
+#define OK									0
+#define NAO_ENCONTRADO						1
+
+#define DELETADO							0
+#define EXISTENTE							1
 
 //Includes
 #include <stdio.h>
@@ -12,8 +17,8 @@
 //Estruturas
 struct colab
 {
-	char *nome, *arquivo, *content;
-	int flag;
+	char *nome, *content;
+	int delete;
 	Editor *autor;
 	Colab *prox;
 };
@@ -24,7 +29,7 @@ Colab *initListaColab(void)
 	return NULL;
 }
 
-Colab *initColab(char *nome, char *arquivo, char *content, char *autor)
+Colab *initColab(char *nome, char *content, char *autor)
 {
 	Editor *editor = procuraEditor(autor);
 	Colab *new;
@@ -37,17 +42,17 @@ Colab *initColab(char *nome, char *arquivo, char *content, char *autor)
 	
 	//Alocando espaço para strings
 	new->nome = (char*) malloc((strlen(nome)+1)*sizeof(char));
-	new->arquivo = (char*) malloc((strlen(arquivo)+1)*sizeof(char));
 	new->content = (char*) malloc((strlen(content)+1)*sizeof(char));
 
 	//Copiando Strings
 	strcpy(new->nome,nome);
-	strcpy(new->nome,nome);
-	strcpy(new->arquivo,arquivo);
 	strcpy(new->content,content);
 
 	//Linkando Colab ao seu autor
 	new->autor = editor;
+
+	//Incializando campo delete como 0 para verificações futuras
+	new->delete = 0;
 
 	new->prox = NULL;
 
@@ -67,4 +72,32 @@ void insereColab(Colab *lista, Colab *novaColab)
 			andador=andador->prox;
 		andador->prox = novaColab;
 	}
+}
+
+int retiraColab(Colab *lista, char *xColab)
+{
+	Colab *ant, *aux;
+
+	ant = NULL;
+	aux= lista;
+	if(aux==NULL)
+		return NAO_ENCONTRADO;
+
+	else
+	{
+		while(aux!=NULL)
+		{
+			if(!strcmp(aux->nome,xColab))
+			{
+				ant->prox=aux->prox;
+				free(aux->nome);
+				free(aux->content);
+				free(aux);
+				return OK;
+			}
+			ant = aux;
+			aux = aux->prox;
+		}
+	}
+	return NAO_ENCONTRADO;
 }

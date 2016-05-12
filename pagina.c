@@ -66,7 +66,7 @@ int retiraPagina(Pagina *lista, char *xPagina)
 
 	else
 	{
-		while(aux->prox!=NULL)
+		while(aux!=NULL)
 		{
 			if(!strcmp(aux->nome,xPagina))
 			{
