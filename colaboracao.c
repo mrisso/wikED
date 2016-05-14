@@ -29,9 +29,9 @@ Colab *initListaColab(void)
 	return NULL;
 }
 
-Colab *initColab(char *nome, char *content, char *autor)
+Colab *initColab(char *nome, char *content, char *autor, void *editores)
 {
-	Editor *editor = procuraEditor(autor);
+	Editor *editor = procuraEditor(editores,autor);
 	Colab *new;
 
 	if(editor == NULL)

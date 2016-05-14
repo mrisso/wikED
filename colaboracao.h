@@ -5,7 +5,7 @@ typedef struct colab Colab;
 
 Colab *initListaColab(void);
 
-Colab *initColab(char *nome, char *content, char *autor);
+Colab *initColab(char *nome, char *content, char *autor, void *editores);
 
 void insereColab(Colab *lista, Colab *novaColab);
 

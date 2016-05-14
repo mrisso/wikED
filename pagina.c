@@ -105,3 +105,8 @@ Pagina *freeListaPagina(Pagina *lista)
 
 	return NULL;
 }
+
+Colab *pageColabs(Pagina *pagina)
+{
+	return pagina->colabs;
+}
