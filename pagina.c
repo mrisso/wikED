@@ -70,7 +70,10 @@ int retiraPagina(Pagina *lista, char *xPagina)
 		{
 			if(!strcmp(aux->nome,xPagina))
 			{
-				ant->prox=aux->prox;
+				if(aux==lista)
+					lista = aux->prox;
+				else
+					ant->prox=aux->prox;
 				freeListaColab(aux->colabs); //Função de Free de colaboracao.h 
 				free(aux->nome);
 				free(aux->arquivo);

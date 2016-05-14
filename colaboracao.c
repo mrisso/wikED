@@ -89,7 +89,10 @@ int retiraColab(Colab *lista, char *xColab)
 		{
 			if(!strcmp(aux->nome,xColab))
 			{
-				ant->prox=aux->prox;
+				if(aux==lista)
+					lista = aux->prox;
+				else
+					ant->prox=aux->prox;
 				free(aux->nome);
 				free(aux->content);
 				free(aux);
@@ -100,4 +103,22 @@ int retiraColab(Colab *lista, char *xColab)
 		}
 	}
 	return NAO_ENCONTRADO;
+}
+
+Colab *freeListaColab(Colab *lista)
+{
+	Colab *aux, *prox;
+
+	aux = lista;
+
+	while(aux!=NULL)
+	{
+		prox = aux->prox;
+		free(aux->nome);
+		free(aux->content);
+		free(aux);
+		aux = prox;
+	}
+
+	return NULL;
 }
