@@ -9,7 +9,7 @@ int main(void)
 {
 	Pagina *lPaginas, *novaPagina;
 	Editor *lEditores, *novoEditor;
-	Colab *novaColab, *pageList;
+	Colab *novaColab;
 	
 	lPaginas = initListaPagina();
 	lEditores = initListaEditor();
