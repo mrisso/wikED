@@ -59,12 +59,12 @@ Colab *initColab(char *nome, char *content, char *autor, void *editores)
 	return new; //Retorna nova Colab
 }
 
-void insereColab(Colab *lista, Colab *novaColab)
+void insereColab(Colab **lista, Colab *novaColab)
 {
-	Colab *andador = lista;
+	Colab *andador = *lista;
 
 	if(andador==NULL)
-		lista=novaColab;
+		*lista=novaColab;
 	
 	else
 	{
@@ -74,12 +74,12 @@ void insereColab(Colab *lista, Colab *novaColab)
 	}
 }
 
-int retiraColab(Colab *lista, char *xColab)
+int retiraColab(Colab **lista, char *xColab)
 {
 	Colab *ant, *aux;
 
 	ant = NULL;
-	aux= lista;
+	aux= *lista;
 	if(aux==NULL)
 		return NAO_ENCONTRADO;
 
@@ -89,8 +89,8 @@ int retiraColab(Colab *lista, char *xColab)
 		{
 			if(!strcmp(aux->nome,xColab))
 			{
-				if(aux==lista)
-					lista = aux->prox;
+				if(aux==*lista)
+					*lista = aux->prox;
 				else
 					ant->prox=aux->prox;
 				free(aux->nome);
@@ -121,4 +121,19 @@ Colab *freeListaColab(Colab *lista)
 	}
 
 	return NULL;
+}
+
+char *colabName(Colab *colab)
+{
+	return colab->nome;
+}
+
+char *colabContent(Colab *colab)
+{
+	return colab->content;
+}
+
+Colab *nextColab(Colab *colab)
+{
+	return colab->prox;
 }

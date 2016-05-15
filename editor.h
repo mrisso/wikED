@@ -7,11 +7,11 @@ Editor *initListaEditor(void);
 
 Editor *initEditor(char* nome);
 
-void insereEditor(Editor *lista, Editor *novoEditor);
+void insereEditor(Editor **lista, Editor *novoEditor);
 
 Editor *procuraEditor(Editor *lista, char *nome);
 
-int retiraEditor(Editor *lista, char* xEditor);
+int retiraEditor(Editor **lista, char* xEditor);
 
 Editor *freeListaEditor(Editor *lista);
 

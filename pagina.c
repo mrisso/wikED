@@ -40,12 +40,12 @@ Pagina *initPagina(char *nome, char *arquivo)
 	return new;
 }
 
-void inserePagina(Pagina *lista, Pagina *novaPagina)
+void inserePagina(Pagina **lista, Pagina *novaPagina)
 {
-	Pagina *andador = lista;
+	Pagina *andador = *lista;
 
 	if(andador==NULL)
-		lista=novaPagina;
+		*lista=novaPagina;
 	
 	else
 	{
@@ -55,12 +55,12 @@ void inserePagina(Pagina *lista, Pagina *novaPagina)
 	}
 }
 
-int retiraPagina(Pagina *lista, char *xPagina)
+int retiraPagina(Pagina **lista, char *xPagina)
 {
 	Pagina *ant, *aux;
 
 	ant = NULL;
-	aux= lista;
+	aux= *lista;
 	if(aux==NULL)
 		return NAO_ENCONTRADO;
 
@@ -70,8 +70,8 @@ int retiraPagina(Pagina *lista, char *xPagina)
 		{
 			if(!strcmp(aux->nome,xPagina))
 			{
-				if(aux==lista)
-					lista = aux->prox;
+				if(aux==*lista)
+					*lista = aux->prox;
 				else
 					ant->prox=aux->prox;
 				freeListaColab(aux->colabs); //Função de Free de colaboracao.h 
@@ -106,7 +106,26 @@ Pagina *freeListaPagina(Pagina *lista)
 	return NULL;
 }
 
-Colab *pageColabs(Pagina *pagina)
+Colab **pageColabs(Pagina *pagina)
 {
-	return pagina->colabs;
+	return &pagina->colabs;
+}
+
+void imprimePaginas(Pagina *lista)
+{
+	Pagina *andador = lista;
+	Colab *andaColab;
+
+	while(andador!=NULL)
+	{
+		printf("Pg: %s\nArq: %s\n",andador->nome,andador->arquivo);
+		andaColab = *pageColabs(andador);
+		while(andaColab != NULL)
+		{
+			printf("Colab: %s\n%s\n\n",colabName(andaColab),colabContent(andaColab));
+			andaColab = nextColab(andaColab);
+		}
+		printf("---------------------------------------------------------------------\n");
+		andador = andador->prox;
+	}
 }

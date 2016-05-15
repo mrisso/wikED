@@ -39,12 +39,12 @@ Editor *initEditor(char *nome)
 	return new;
 }
 
-void insereEditor(Editor *lista, Editor *novoEditor)
+void insereEditor(Editor **lista, Editor *novoEditor)
 {
-	Editor *andador = lista;
+	Editor *andador = *lista;
 
 	if(andador==NULL)
-		lista=novoEditor;
+		*lista=novoEditor;
 	
 	else
 	{
@@ -68,12 +68,12 @@ Editor *procuraEditor(Editor *lista, char *nome)
 	return NULL;
 }
 
-int retiraEditor(Editor *lista, char* xEditor)
+int retiraEditor(Editor **lista, char* xEditor)
 {
 	Editor *ant, *aux;
 
 	ant = NULL;
-	aux= lista;
+	aux= *lista;
 	if(aux==NULL)
 		return NAO_ENCONTRADO;
 
@@ -83,8 +83,8 @@ int retiraEditor(Editor *lista, char* xEditor)
 		{
 			if(!strcmp(aux->nome,xEditor))
 			{
-				if(aux==lista)
-					lista = aux->prox;
+				if(aux==*lista)
+					*lista = aux->prox;
 				else
 					ant->prox=aux->prox;
 				free(aux->nome);

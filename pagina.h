@@ -9,12 +9,15 @@ Pagina *initListaPagina(void);
 
 Pagina *initPagina(char *nome, char *arquivo);
 
-void inserePagina(Pagina *lista, Pagina *novaPagina);
+void inserePagina(Pagina **lista, Pagina *novaPagina);
 
-int retiraPagina(Pagina *lista, char *xPagina);
+int retiraPagina(Pagina **lista, char *xPagina);
 
 Pagina *freeListaPagina(Pagina *lista);
 
-Colab *pageColabs(Pagina *lista);
+Colab **pageColabs(Pagina *lista);
+
+//Debug
+void imprimePaginas(Pagina *lista);
 
 #endif
