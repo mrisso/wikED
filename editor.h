@@ -15,4 +15,6 @@ int retiraEditor(Editor **lista, char* xEditor);
 
 Editor *freeListaEditor(Editor *lista);
 
+char *editorName(Editor *editor);
+
 #endif

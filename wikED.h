@@ -1,13 +1,21 @@
 #ifndef WIKED_H_
 #define WIKED_H_
 
-void addPagina(char *nome, char *arquivo, char **lista);
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "editor.h"
+#include "colaboracao.h"
+#include "pagina.h"
+
+void addPagina(char *nome, char *arquivo, Pagina **lista);
 
 int delPagina(char *nome, Pagina **lista);
 
 void addEditor(char *nome, Editor **lista);
 
-int delEditor(char *nome, Editor **lista);
+int delEditor(char *nome, Editor **lista, Pagina **paginas);
 
 void addColab(char *nome, char *content, char *autor, char *pagina, Editor *editores, Pagina **lista);
 

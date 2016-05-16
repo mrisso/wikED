@@ -17,6 +17,8 @@ Pagina *freeListaPagina(Pagina *lista);
 
 Colab **pageColabs(Pagina *lista);
 
+Pagina *nextPagina(Pagina *pagina);
+
 //Debug
 void imprimePaginas(Pagina *lista);
 

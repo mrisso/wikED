@@ -21,4 +21,6 @@ char *colabContent(Colab *colab);
 
 Colab *nextColab(Colab *colab);
 
+Editor *colabEditor(Colab *colab);
+
 #endif

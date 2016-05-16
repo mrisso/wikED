@@ -129,3 +129,8 @@ void imprimePaginas(Pagina *lista)
 		andador = andador->prox;
 	}
 }
+
+Pagina *nextPagina(Pagina *pagina)
+{
+	return pagina->prox;
+}

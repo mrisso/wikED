@@ -114,3 +114,8 @@ Editor *freeListaEditor(Editor *lista)
 
 	return NULL;
 }
+
+char *editorName(Editor *editor)
+{
+	return editor->nome;
+}

@@ -137,3 +137,8 @@ Colab *nextColab(Colab *colab)
 {
 	return colab->prox;
 }
+
+Editor *colabEditor(Colab *colab)
+{
+	return colab->autor;
+}
