@@ -29,7 +29,7 @@ Colab *initListaColab(void)
 	return NULL;
 }
 
-Colab *initColab(char *nome, char *content, char *autor, void *editores)
+Colab *initColab(char *nome, char *content, char *autor, Editor *editores)
 {
 	Editor *editor = procuraEditor(editores,autor);
 	Colab *new;

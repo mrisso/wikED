@@ -1,11 +1,13 @@
 #ifndef COLAB_H_
 #define COLAB_H_
 
+#include "editor.h"
+
 typedef struct colab Colab;
 
 Colab *initListaColab(void);
 
-Colab *initColab(char *nome, char *content, char *autor, void *editores);
+Colab *initColab(char *nome, char *content, char *autor, Editor *editores);
 
 void insereColab(Colab **lista, Colab *novaColab);
 
