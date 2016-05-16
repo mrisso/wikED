@@ -134,3 +134,8 @@ Pagina *nextPagina(Pagina *pagina)
 {
 	return pagina->prox;
 }
+
+char *pageName(Pagina *pagina)
+{
+	return pagina->nome;
+}

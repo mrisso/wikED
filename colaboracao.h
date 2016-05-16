@@ -23,4 +23,6 @@ Colab *nextColab(Colab *colab);
 
 Editor *colabEditor(Colab *colab);
 
+void colabStatus(Colab *colab, int status);
+
 #endif

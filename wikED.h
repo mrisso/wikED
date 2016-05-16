@@ -17,7 +17,7 @@ void addEditor(char *nome, Editor **lista);
 
 int delEditor(char *nome, Editor **lista, Pagina **paginas);
 
-void addColab(char *nome, char *content, char *autor, char *pagina, Editor *editores, Pagina **lista);
+int addColab(char *nome, char *content, char *autor, char *pagina, Editor *editores, Pagina **lista);
 
 int delColab(char *nome, char *autor, char *pagina, Pagina **lista);
 

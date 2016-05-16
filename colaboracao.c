@@ -142,3 +142,8 @@ Editor *colabEditor(Colab *colab)
 {
 	return colab->autor;
 }
+
+void colabStatus(Colab *colab, int status)
+{
+	colab->delete = status;
+}
