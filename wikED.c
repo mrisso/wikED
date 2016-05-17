@@ -5,6 +5,11 @@
 
 #define DELETADO									0
 
+#define SEM_CAMINHO									0
+#define COM_CAMINHO									1
+
+#define SIM											1
+
 //Includes
 
 #include "wikED.h"
@@ -70,4 +75,49 @@ int delColab(char *nome, char *autor, char *pagina, Pagina **lista)
 					return OK;
 				}
 	return NAO_ENCONTRADO;
+}
+
+void addLink(char *orig, char *dest, Pagina **lista)
+{
+	Pagina *andador, *origem, *destino;
+
+	for(andador=*lista;andador!=NULL;andador=nextPagina(andador))
+	{
+		if(!strcmp(pageName(andador),orig))
+			origem = andador;
+		
+		else if(!strcmp(pageName(andador),dest))
+			destino = andador;
+	}
+
+	criarLink(&origem,destino);
+}
+
+void printPagina(char *nome, Pagina *lista);
+
+int caminho(char *orig, char *dest, Pagina *lista)
+{
+	Pagina *andador = lista;
+	Link *aux;
+	int check=0;
+
+	if(andador==NULL)
+		return SEM_CAMINHO;
+
+	for(;andador!=NULL;andador=nextPagina(andador))
+			if(!strcmp(pageName(andador),orig))
+			{
+				for(aux=pageLinks(andador);aux!=NULL;aux=nextLink(aux))
+					if(!pageStatus(pageOnLink(aux)))
+					{
+						check = check||(!strcmp(pageName(pageOnLink(aux)),dest))||
+							caminho(pageName(pageOnLink(aux)),dest,lista);
+						chPageStatus(pageOnLink(aux),SIM);
+						if(check)
+							return COM_CAMINHO;
+					}
+				return SEM_CAMINHO;
+			}
+
+	return NAO_ENCONTRADO;		
 }

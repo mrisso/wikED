@@ -3,6 +3,8 @@
 #define OK											0
 #define NAO_ENCONTRADO								1
 
+#define NAO											0
+
 //Includes
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,12 +14,20 @@
 #include "colaboracao.h"
 
 //Estruturas
+struct link
+{
+	Pagina *pagina;
+	Link *prox;
+};
+
 struct pagina
 {
 	char *nome;
 	char *arquivo;
+	int repeat;
 	Pagina *prox;
 	Colab *colabs;
+	Link *links;
 };
 
 //Funções
@@ -36,6 +46,8 @@ Pagina *initPagina(char *nome, char *arquivo)
 	strcpy(new->arquivo,arquivo);
 	new->prox = NULL;
 	new->colabs = NULL;
+	new->links = NULL;
+	new->repeat = NAO;
 
 	return new;
 }
@@ -138,4 +150,48 @@ Pagina *nextPagina(Pagina *pagina)
 char *pageName(Pagina *pagina)
 {
 	return pagina->nome;
+}
+
+void criarLink(Pagina **orig, Pagina *dest)
+{
+	Link *andador = (*orig)->links;
+	Link *new = (Link *) malloc(sizeof(Link));
+
+	new->pagina = dest;
+	new->prox = NULL;
+
+	if(andador==NULL)
+		(*orig)->links = new;
+
+	else
+	{
+		while(andador->prox!=NULL)
+			andador=andador->prox;
+		andador->prox = new;
+	}
+}	
+
+int pageStatus(Pagina *pagina)
+{
+	return pagina->repeat;
+}
+
+Link *pageLinks(Pagina *pagina)
+{
+	return pagina->links;
+}
+
+Link *nextLink(Link *link)
+{
+	return link->prox;
+}
+
+void chPageStatus(Pagina *pagina, int status)
+{
+	pagina->repeat = status;
+}
+
+Pagina *pageOnLink(Link *link)
+{
+	return link->pagina;
 }
