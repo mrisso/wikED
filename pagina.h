@@ -6,6 +6,7 @@
 #define NAO_ENCONTRADO								1
 
 #define NAO											0
+#define SIM											1
 
 //Includes
 #include <stdio.h>
@@ -44,6 +45,8 @@ Link *pageLinks(Pagina *pagina);
 Link *nextLink(Link *link);
 
 void chPageStatus(Pagina *pagina, int status);
+
+void chAllStatus(Pagina **lista, int status);
 
 Pagina *pageOnLink(Link *link);
 

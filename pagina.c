@@ -199,3 +199,11 @@ void freeListaLink(Link *lista)
 		aux = prox;
 	}
 }
+
+void chAllStatus(Pagina **lista, int status)
+{
+	Pagina *andador;
+
+	for(andador=*lista;andador!=NULL;andador=andador->prox)
+		andador->repeat = status;
+}

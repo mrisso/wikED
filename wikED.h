@@ -10,6 +10,7 @@
 #define SEM_CAMINHO									0
 #define COM_CAMINHO									1
 
+#define NAO											0
 #define SIM											1
 
 //Includes
