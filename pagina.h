@@ -1,6 +1,17 @@
 #ifndef PAGINA_H_
 #define PAGINA_H_
 
+//Constantes
+#define OK											0
+#define NAO_ENCONTRADO								1
+
+#define NAO											0
+
+//Includes
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "colaboracao.h"
 
 typedef struct link Link;

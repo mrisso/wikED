@@ -1,6 +1,18 @@
 #ifndef COLAB_H_
 #define COLAB_H_
 
+//Constantes
+#define OK									0
+#define NAO_ENCONTRADO						1
+
+#define DELETADO							0
+#define EXISTENTE							1
+
+//Includes
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "editor.h"
 
 typedef struct colab Colab;

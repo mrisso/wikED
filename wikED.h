@@ -1,6 +1,18 @@
 #ifndef WIKED_H_
 #define WIKED_H_
 
+//Constantes
+#define NAO_ENCONTRADO								1
+#define OK											0
+
+#define DELETADO									0
+
+#define SEM_CAMINHO									0
+#define COM_CAMINHO									1
+
+#define SIM											1
+
+//Includes
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

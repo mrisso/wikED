@@ -1,12 +1,4 @@
 //editor.c
-//Constantes
-#define OK											0
-#define NAO_ENCONTRADO								1
-
-//Includes
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 #include "editor.h"
 

@@ -1,17 +1,6 @@
 //pagina.c
-//Constantes
-#define OK											0
-#define NAO_ENCONTRADO								1
-
-#define NAO											0
-
-//Includes
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 #include "pagina.h"
-#include "colaboracao.h"
 
 //Estruturas
 struct link
