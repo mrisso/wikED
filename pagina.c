@@ -109,6 +109,7 @@ Pagina *freeListaPagina(Pagina *lista)
 	{
 		prox = aux->prox;
 		freeListaColab(aux->colabs); //Função de Free de colaboracao.h
+		freeListaLink(aux->links);
 		free(aux->nome);
 		free(aux->arquivo);
 		free(aux);
@@ -194,4 +195,18 @@ void chPageStatus(Pagina *pagina, int status)
 Pagina *pageOnLink(Link *link)
 {
 	return link->pagina;
+}
+
+void freeListaLink(Link *lista)
+{
+	Link *aux, *prox;
+
+	aux = lista;
+
+	while(aux!=NULL)
+	{
+		prox = aux->prox;
+		free(aux);
+		aux = prox;
+	}
 }

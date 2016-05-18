@@ -24,6 +24,8 @@ char *pageName(Pagina *pagina);
 
 void criarLink(Pagina **orig, Pagina *dest);
 
+void freeListaLink(Link *lista);
+
 int pageStatus(Pagina *pagina);
 
 Link *pageLinks(Pagina *pagina);

@@ -25,7 +25,7 @@ void addLink(char *orig, char *dest, Pagina **lista);
 
 void printPagina(char *nome, Pagina *lista);
 
-int caminho(char *orig, char *dest, Pagina *lista);
+int caminho(char *orig, char *dest, Pagina **lista);
 
 void printWikED(Pagina *paginas, Editor *editores);
 

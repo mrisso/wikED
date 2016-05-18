@@ -95,9 +95,9 @@ void addLink(char *orig, char *dest, Pagina **lista)
 
 void printPagina(char *nome, Pagina *lista);
 
-int caminho(char *orig, char *dest, Pagina *lista)
+int caminho(char *orig, char *dest, Pagina **lista)
 {
-	Pagina *andador = lista;
+	Pagina *andador = *lista;
 	Link *aux;
 	int check=0;
 
@@ -110,14 +110,15 @@ int caminho(char *orig, char *dest, Pagina *lista)
 				for(aux=pageLinks(andador);aux!=NULL;aux=nextLink(aux))
 					if(!pageStatus(pageOnLink(aux)))
 					{
-						check = check||(!strcmp(pageName(pageOnLink(aux)),dest))||
-							caminho(pageName(pageOnLink(aux)),dest,lista);
 						chPageStatus(pageOnLink(aux),SIM);
+						check = check ||
+								(!strcmp(pageName(pageOnLink(aux)),dest)) ||
+								caminho(pageName(pageOnLink(aux)),dest,lista);
 						if(check)
 							return COM_CAMINHO;
 					}
 				return SEM_CAMINHO;
 			}
 
-	return NAO_ENCONTRADO;		
+	return SEM_CAMINHO;
 }
