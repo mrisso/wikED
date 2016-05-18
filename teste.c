@@ -2,9 +2,8 @@
 
 int main(void)
 {
-	Pagina *lPaginas, *novaPagina;
-	Editor *lEditores, *novoEditor;
-	Colab *novaColab;
+	Pagina *lPaginas;
+	Editor *lEditores;
 
 	lPaginas = initListaPagina();
 	lEditores = initListaEditor();
@@ -29,7 +28,7 @@ int main(void)
 		printf("Não existe Pedro!\n");
 
 	if(addColab("c2.txt","CONTEÚDOC2","Maria","Fisica",lEditores,&lPaginas))
-		printf("Não existe Pedro!\n");
+		printf("Não existe Maria!\n");
 
 	if(addColab("c3.txt","CONTEÚDOC3","Pedro","Fisica",lEditores,&lPaginas))
 		printf("Não existe Pedro!\n");
@@ -47,6 +46,30 @@ int main(void)
 
 	addLink("Artes","Fisica",&lPaginas);
 
-	
+	if(addColab("c6.txt","CONTEÚDOC6","Joao","UFES",lEditores,&lPaginas))
+		printf("Não existe Joao!\n");
 
+	if(addColab("c7.txt","CONTEÚDOC7","Joao","UFES",lEditores,&lPaginas))
+		printf("Não existe Joao!\n");
+
+	if(addColab("c8.txt","CONTEÚDOC8","Ana","UFES",lEditores,&lPaginas))
+		printf("Não existe Ana!\n");
+
+	addLink("UFES","Fisica",&lPaginas);
+	addLink("UFES","Artes",&lPaginas);
+
+	if(caminho("UFES","Fisica",&lPaginas))
+		printf("Existe caminho UFES -> Fisica\n");
+	else
+		printf("Não existe caminho UFES -> Fisica\n");
+
+	if(caminho("Fisica","UFES",&lPaginas))
+		printf("Existe caminho Fisica -> UFES\n");
+	else
+		printf("Não existe caminho Fisica -> UFES\n");
+
+	freeListaPagina(lPaginas);
+	freeListaEditor(lEditores);
+
+	return OK;
 }
