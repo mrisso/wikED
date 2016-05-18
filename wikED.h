@@ -40,6 +40,6 @@ void printPagina(char *nome, Pagina *lista);
 
 int caminho(char *orig, char *dest, Pagina **lista);
 
-void printWikED(Pagina *paginas, Editor *editores);
+void printWikED(Pagina *lista);
 
 #endif

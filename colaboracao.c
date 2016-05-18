@@ -40,7 +40,7 @@ Colab *initColab(char *nome, char *content, char *autor, Editor *editores)
 	new->autor = editor;
 
 	//Incializando campo delete como 0 para verificações futuras
-	new->delete = 0;
+	new->delete = EXISTENTE;
 
 	new->prox = NULL;
 
@@ -131,7 +131,12 @@ Editor *colabEditor(Colab *colab)
 	return colab->autor;
 }
 
-void colabStatus(Colab *colab, int status)
+void colabSetStatus(Colab *colab, int status)
 {
 	colab->delete = status;
+}
+
+int colabStatus(Colab *colab)
+{
+	return colab->delete;
 }

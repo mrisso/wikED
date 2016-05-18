@@ -34,6 +34,8 @@ Pagina *nextPagina(Pagina *pagina);
 
 char *pageName(Pagina *pagina);
 
+char *pageFile(Pagina *pagina);
+
 void criarLink(Pagina **orig, Pagina *dest);
 
 void freeListaLink(Link *lista);

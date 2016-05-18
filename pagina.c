@@ -142,6 +142,11 @@ char *pageName(Pagina *pagina)
 	return pagina->nome;
 }
 
+char *pageFile(Pagina *pagina)
+{
+	return pagina->arquivo;
+}
+
 void criarLink(Pagina **orig, Pagina *dest)
 {
 	Link *andador = (*orig)->links;

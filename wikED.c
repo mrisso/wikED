@@ -59,7 +59,7 @@ int delColab(char *nome, char *autor, char *pagina, Pagina **lista)
 			for(aux=*pageColabs(andador);aux!=NULL;aux=nextColab(aux))
 				if(!strcmp(colabName(aux),nome) && !strcmp(editorName(colabEditor(aux)),autor))
 				{
-					colabStatus(aux,DELETADO);
+					colabSetStatus(aux,DELETADO);
 					return OK;
 				}
 	return NAO_ENCONTRADO;
@@ -81,7 +81,39 @@ void addLink(char *orig, char *dest, Pagina **lista)
 	criarLink(&origem,destino);
 }
 
-void printPagina(char *nome, Pagina *lista);
+void printPagina(char *nome, Pagina *lista)
+{
+	FILE *arquivo;
+	Pagina *andador;
+	Colab *aux;
+	Link *aux2;
+	
+	for(andador=lista;andador!=NULL;andador=nextPagina(andador))
+		if(!strcmp(pageName(andador),nome))
+		{
+			arquivo=fopen(pageFile(andador),"w");
+			fprintf(arquivo,"%s\n\n",pageName(andador));
+			fprintf(arquivo,"--> Historico de contribuicoes\n");
+			for(aux=*pageColabs(andador);aux!=NULL;aux=nextColab(aux))
+				fprintf(arquivo,"%s %s\n",editorName(colabEditor(aux)),colabName(aux));
+			fprintf(arquivo,"\n--> Links\n");
+			for(aux2=pageLinks(andador);aux2!=NULL;aux2=nextLink(aux2))
+				fprintf(arquivo,"%s %s\n",pageName(pageOnLink(aux2)), pageFile(pageOnLink(aux2)));
+			fprintf(arquivo,"\n--> Textos\n");
+			for(aux=*pageColabs(andador);aux!=NULL;aux=nextColab(aux))
+			{
+				if(colabStatus(aux))
+				{
+					fprintf(arquivo,"\n-------- %s (%s) --------\n\n",colabName(aux),editorName(colabEditor(aux)));
+					fprintf(arquivo,"%s\n",colabContent(aux));
+				}
+			}
+
+			break;
+		}
+
+	fclose(arquivo);
+}
 
 int caminho(char *orig, char *dest, Pagina **lista)
 {
@@ -109,4 +141,12 @@ int caminho(char *orig, char *dest, Pagina **lista)
 			}
 
 	return SEM_CAMINHO;
+}
+
+void printWikED(Pagina *lista)
+{
+	Pagina *andador;
+
+	for(andador=lista;andador!=NULL;andador=nextPagina(andador))
+		printPagina(pageName(andador),lista);
 }

@@ -72,6 +72,8 @@ int main(void)
 
 	chAllStatus(&lPaginas,NAO);
 
+	printWikED(lPaginas);
+
 	freeListaPagina(lPaginas);
 	freeListaEditor(lEditores);
 
