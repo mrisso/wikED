@@ -26,15 +26,15 @@ typedef struct colab Colab;
 
 /*Inicializa uma lista de Colaborações
  * inputs: nenhum
- * output: ponteiro para primeira posição inicializado
+ * output: ponteiro para NULL
  * pre-condicao: nenhuma
- * pos-condicao: ponteiro para estrutura existe e aponta para NULL
+ * pos-condicao: ponteiro para primeira posição inicializado
  */
 Colab *initListaColab(void);
 
 /*Inicializa uma estrutura Colab
  * inputs: o nome, o conteúdo, o nome do autor e a lista de editores existentes
- * outputs: um ponteiro para a estrutura criada caso o editor exista. Caso contrário, ponteiro para NULL
+ * output: um ponteiro para a estrutura criada caso o editor exista. Caso contrário, ponteiro para NULL
  * pre-condicao: nome e conteudo validos, e nome do autor existente na lista de editores
  * pos-condicao: estrutura criada com os campos nome, conteudo copiados; ponteiro prox com valor NULL; ponteiro autor apontando para o autor na lista de editores
  */
@@ -42,15 +42,15 @@ Colab *initColab(char *nome, char *content, char *autor, Editor *editores);
 
 /*Insere uma colaboração na última posição da lista de colaborações
  * inputs: ponteiro para a lista e ponteiro para nova colaboração
- * outputs: nenhum
- * pre-condicao: lista inicializada e nova estrutura inicializada
+ * output: nenhum
+ * pre-condicao: lista de colaborações e nova estrutura inicializada
  * pos-condicao: lista possui nova estrutura na ultima posição
  */
 void insereColab(Colab **lista, Colab *novaColab);
 
 /*Retira uma colaboração da lista de colaborações
- * inputs: ponteiro para a lista e noma da colaboração a ser retirada
- * outputs: retorna 0(OK) caso a contribuição tenha sido retirada e 1(NAO_ENCONTRADO) caso não exista a colaboração na lista
+ * inputs: ponteiro para a lista e nome da colaboração a ser retirada
+ * output: retorna 0(OK) caso a contribuição tenha sido retirada e 1(NAO_ENCONTRADO) caso não exista a colaboração na lista
  * pre-condicao: lista com contribuições não vazia e nome da contribuição valido
  * pos-condicao: lista não possui mais a contribuição com nome xColab (string)
  */
@@ -58,7 +58,7 @@ int retiraColab(Colab **lista, char* xColab);
 
 /*Libera todo o espaço de memória (recursivamente) alocado pela lista de colaborações
  * inputs: lista de colaborações
- * outputs: ponteiro para NULL (lista vazia)
+ * output: ponteiro para NULL (lista vazia)
  * pre-condicao: lista de contribuições não vazia
  * pos-condicao: memória alocada pela lista liberada
  */
