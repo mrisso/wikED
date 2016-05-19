@@ -18,19 +18,11 @@ void addEditor(char *nome, Editor **lista)
 	insereEditor(lista, initEditor(nome));
 }
 
-int delEditor(char *nome, Editor **lista, Pagina **paginas)
+int delEditor(char *nome, Editor **lista)
 {
-	Pagina *andador;
-	Colab *aux;
-
 	if(retiraEditor(lista,nome))
 		return NAO_ENCONTRADO;
 	
-	for(andador=*paginas;andador!=NULL;andador=nextPagina(andador))
-			for(aux=*pageColabs(andador);aux!=NULL;aux=nextColab(aux))
-				if(!strcmp(editorName(colabEditor(aux)),nome))
-					retiraColab(pageColabs(andador),colabName(aux));
-
 	return OK;
 }
 
@@ -81,7 +73,7 @@ void addLink(char *orig, char *dest, Pagina **lista)
 	criarLink(&origem,destino);
 }
 
-void printPagina(char *nome, Pagina *lista)
+void printPagina(char *nome, Pagina *lista, Editor *editores)
 {
 	FILE *arquivo;
 	Pagina *andador;
@@ -95,14 +87,15 @@ void printPagina(char *nome, Pagina *lista)
 			fprintf(arquivo,"%s\n\n",pageName(andador));
 			fprintf(arquivo,"--> Historico de contribuicoes\n");
 			for(aux=*pageColabs(andador);aux!=NULL;aux=nextColab(aux))
-				fprintf(arquivo,"%s %s\n",editorName(colabEditor(aux)),colabName(aux));
+				if(procuraEditor(editores,editorName(colabEditor(aux)))!=NULL)
+					fprintf(arquivo,"%s %s\n",editorName(colabEditor(aux)),colabName(aux));
 			fprintf(arquivo,"\n--> Links\n");
 			for(aux2=pageLinks(andador);aux2!=NULL;aux2=nextLink(aux2))
 				fprintf(arquivo,"%s %s\n",pageName(pageOnLink(aux2)), pageFile(pageOnLink(aux2)));
 			fprintf(arquivo,"\n--> Textos\n");
 			for(aux=*pageColabs(andador);aux!=NULL;aux=nextColab(aux))
 			{
-				if(colabStatus(aux))
+				if(colabStatus(aux) && procuraEditor(editores,editorName(colabEditor(aux)))!=NULL)
 				{
 					fprintf(arquivo,"\n-------- %s (%s) --------\n\n",colabName(aux),editorName(colabEditor(aux)));
 					fprintf(arquivo,"%s\n",colabContent(aux));
@@ -143,10 +136,10 @@ int caminho(char *orig, char *dest, Pagina **lista)
 	return SEM_CAMINHO;
 }
 
-void printWikED(Pagina *lista)
+void printWikED(Pagina *lista, Editor *editores)
 {
 	Pagina *andador;
 
 	for(andador=lista;andador!=NULL;andador=nextPagina(andador))
-		printPagina(pageName(andador),lista);
+		printPagina(pageName(andador),lista,editores);
 }

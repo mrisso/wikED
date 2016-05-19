@@ -28,7 +28,7 @@ int delPagina(char *nome, Pagina **lista);
 
 void addEditor(char *nome, Editor **lista);
 
-int delEditor(char *nome, Editor **lista, Pagina **paginas);
+int delEditor(char *nome, Editor **lista);
 
 int addColab(char *nome, char *content, char *autor, char *pagina, Editor *editores, Pagina **lista);
 
@@ -36,10 +36,10 @@ int delColab(char *nome, char *autor, char *pagina, Pagina **lista);
 
 void addLink(char *orig, char *dest, Pagina **lista);
 
-void printPagina(char *nome, Pagina *lista);
+void printPagina(char *nome, Pagina *lista, Editor *editores);
 
 int caminho(char *orig, char *dest, Pagina **lista);
 
-void printWikED(Pagina *lista);
+void printWikED(Pagina *lista, Editor *editores);
 
 #endif

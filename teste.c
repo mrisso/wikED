@@ -21,7 +21,7 @@ int main(void)
 	addEditor("Ana",&lEditores);
 	addEditor("Edu",&lEditores);
 
-	if(delEditor("Edu",&lEditores,&lPaginas))
+	if(delEditor("Edu",&lEditores))
 		printf("Não existe Edu!\n");
 
 	if(addColab("c1.txt","CONTEÚDOC1","Maria","Fisica",lEditores,&lPaginas))
@@ -65,14 +65,19 @@ int main(void)
 
 	chAllStatus(&lPaginas,NAO);
 
+	delEditor("Maria",&lEditores);
+
 	if(caminho("Fisica","UFES",&lPaginas))
 		printf("Existe caminho Fisica -> UFES\n");
 	else
 		printf("Não existe caminho Fisica -> UFES\n");
 
+	if(delPagina("UFES",&lPaginas))
+		printf("Não existe a página UFES!\n");
+
 	chAllStatus(&lPaginas,NAO);
 
-	printWikED(lPaginas);
+	printWikED(lPaginas,lEditores);
 
 	freeListaPagina(lPaginas);
 	freeListaEditor(lEditores);
