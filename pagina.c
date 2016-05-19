@@ -76,6 +76,7 @@ int retiraPagina(Pagina **lista, char *xPagina)
 				else
 					ant->prox=aux->prox;
 				freeListaColab(aux->colabs); //Função de Free de colaboracao.h 
+				freeListaLink(aux->links);
 				free(aux->nome);
 				free(aux->arquivo);
 				free(aux);
