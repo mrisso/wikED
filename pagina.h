@@ -62,7 +62,7 @@ void inserePagina(Pagina **lista, Pagina *novaPagina);
  */
 int retiraPagina(Pagina **lista, char *xPagina);
 
-/*Libera todo o espaço de memória (recursivamente) alocado pela lista de páginas
+/*Libera todo o espaço de memória alocado pela lista de páginas
  * inputs: lista de páginas
  * output: ponteiro para NULL (lista vazia)
  * pre-condicao: lista de páginas não vazia

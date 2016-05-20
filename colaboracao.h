@@ -56,7 +56,7 @@ void insereColab(Colab **lista, Colab *novaColab);
  */
 int retiraColab(Colab **lista, char* xColab);
 
-/*Libera todo o espaço de memória (recursivamente) alocado pela lista de colaborações
+/*Libera todo o espaço de memória alocado pela lista de colaborações
  * inputs: lista de colaborações
  * output: ponteiro para NULL (lista vazia)
  * pre-condicao: lista de contribuições não vazia
