@@ -110,6 +110,14 @@ char *pageFile(Pagina *pagina);
  */
 void criarLink(Pagina **orig, Pagina *dest);
 
+/*Retira um link entre duas páginas
+ * inputs: ponteiro para o ponteiro da página de origem e ponteiro para a página destino
+ * output: nenhum
+ * pre-condicao: duas páginas linkadas válidas
+ * pos-condicao: pagina origem não tem mais link para a pagina destino em sua lista de links
+ */
+void retiraLink(Pagina **orig, Pagina *dest);
+
 /*Libera todo o espaço de memória (recursivamente) alocado pela lista de links
  * inputs: lista de links
  * output: nenhum

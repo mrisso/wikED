@@ -73,6 +73,22 @@ void addLink(char *orig, char *dest, Pagina **lista)
 	criarLink(&origem,destino);
 }
 
+void delLink(char *orig, char *dest, Pagina **lista)
+{
+	Pagina *andador, *origem, *destino;
+
+	for(andador=*lista;andador!=NULL;andador=nextPagina(andador))
+	{
+		if(!strcmp(pageName(andador),orig))
+			origem = andador;
+		
+		else if(!strcmp(pageName(andador),dest))
+			destino = andador;
+	}
+
+	retiraLink(&origem,destino);
+}
+
 void printPagina(char *nome, Pagina *lista, Editor *editores)
 {
 	FILE *arquivo;

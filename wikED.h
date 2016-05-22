@@ -78,6 +78,14 @@ int delColab(char *nome, char *autor, char *pagina, Pagina **lista);
  */
 void addLink(char *orig, char *dest, Pagina **lista);
 
+/*Retira um link de uma página de origem para uma página destino
+ * inputs: nome da página de origem e destino (string); ponteiro para a lista de páginas
+ * output: nenhum
+ * pre-condicao: strings válidas para os nomes das páginas; lista de páginas não nula; páginas existem; link existe
+ * pos-condicao: link retirado da página de origem para a página destino
+ */
+void delLink(char *orig, char *dest, Pagina **lista);
+
 /*Imprime uma página da wikED
  * inputs: nome da página, lista de páginas, lista de editores
  * output: nenhum
@@ -102,6 +110,12 @@ int caminho(char *orig, char *dest, Pagina **lista);
  */
 void printWikED(Pagina *lista, Editor *editores);
 
+/*Lê um arquivo inteiro de colaboração fornecido
+ * inputs: nome do arquivo (string)
+ * output: conteúdo inteiro do arquivo (string) ou NULL caso não seja possível ler arquivo
+ * pre-condicao: nome de arquivo válido e arquivo de colaboração existe
+ * pos-condicao: nenhuma
+ */
 char *readColabFile(char *fileName);
 
 #endif

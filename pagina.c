@@ -167,6 +167,27 @@ void criarLink(Pagina **orig, Pagina *dest)
 	}
 }	
 
+void retiraLink(Pagina **orig, Pagina *dest)
+{
+	Link *andador = (*orig)->links;
+	Link *ant = NULL;
+
+	while(andador!=NULL)
+	{
+		if(andador->pagina==dest)
+		{
+			if(andador==(*orig)->links)
+				(*orig)->links=andador->prox;
+			else
+				ant->prox=andador->prox;
+
+			free(andador);
+		}
+		ant=andador;
+		andador=andador->prox;
+	}
+}
+
 int pageStatus(Pagina *pagina)
 {
 	return pagina->repeat;
