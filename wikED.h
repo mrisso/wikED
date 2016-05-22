@@ -102,4 +102,6 @@ int caminho(char *orig, char *dest, Pagina **lista);
  */
 void printWikED(Pagina *lista, Editor *editores);
 
+char *readColabFile(char *fileName);
+
 #endif

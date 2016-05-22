@@ -143,3 +143,21 @@ void printWikED(Pagina *lista, Editor *editores)
 	for(andador=lista;andador!=NULL;andador=nextPagina(andador))
 		printPagina(pageName(andador),lista,editores);
 }
+
+char *readColabFile(char *fileName)
+{
+	FILE *colabFile;
+	long long colabSize;
+	char *colab;
+
+	colabFile = fopen(fileName,"rb");
+	fseek(colabFile, 0, SEEK_END);
+	colabSize = ftell(colabFile);
+	rewind(colabFile);
+	colab = malloc((colabSize+1) * sizeof(char));
+	fread(colab, sizeof(char), colabSize, colabFile);
+	fclose(colabFile);
+	colab[colabSize]='\0';
+
+	return colab;
+}
